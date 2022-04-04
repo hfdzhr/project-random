@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Space+Mono&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 
     <div class="container pt-5">
         <center>
-            <div class="detail1">
+            <div class="detail1" data-aos="fade-up" data-aos-duration="1000">
                 <p>Saweria membantu kamu mendapatkan dukungan finansial dari penggemar
                     karyamu dengan moda pembayaran di
                     bawah ini:</p>
@@ -52,7 +52,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="detail2">
+            <div class="detail2" data-aos="fade-up" data-aos-duration="1000">
                 <h3>Cara Memulai : </h3>
                 <ul>
                     <li>
@@ -72,13 +72,13 @@
                     </li>
                 </ul>
             </div>
-            <div class="daftar text-center">
+            <div class="daftar text-center" data-aos="fade-up" data-aos-duration="1000">
                 <img src="https://saweria.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcapy_happy.603c7293.svg&w=384&q=75"
                     alt="" srcset="">
                 <h3>siap bergabung bersama saweria?</h3>
                 <input type="button" value="Daftar" class="tombol" id="btn2" onclick="daftar()">
             </div>
-            <div class="detail3">
+            <div class="detail3" data-aos="fade-up" data-aos-duration="1000">
                 <div class="row">
                     <div class="col">
                         <p>Setiap transaksi masuk akan terkena biaya sebesar 5% (6% untuk OVO)</p>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="detail4" onclick="detail()">
+            <div class="detail4" onclick="detail()" data-aos="fade-up" data-aos-duration="1000">
                 <div class="row">
                     <div class="col">
                         <img src="https://saweria.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fchicken_sad.23bb618d.svg&w=256&q=75"
@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </div>
-            <div class="detail5">
+            <div class="detail5" data-aos="fade-up" data-aos-duration="1000">
                 <h4>Ini adalah tiruan dari website saweria</h4>
                 <p><a href="https://saweria.co">saweria</a> adalah sebuah layanan yang membantu KAMU untuk mendapatkan dukungan finansial
                     dari para penikmat karyamu. Dukungan ini bersifat sekali putus (bukan langganan) dan dapat
@@ -114,5 +114,9 @@
     </div>
 </body>
 <script src="./script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+     AOS.init();
+</script>
 
 </html>
