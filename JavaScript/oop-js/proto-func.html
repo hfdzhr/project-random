@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protoype Inheritance</title>
+</head>
+
+<body>
+    <script>
+        function Person(namaDepan, namaBelakang) { //Awali nama const function dengan huruf besar
+            this.namaDepan = namaDepan
+            this.namaBelakang = namaBelakang
+            this.panggil = function (nama) {
+                console.log(`Halo ${nama}`);
+            }
+        }
+
+        Person.prototype.bye = function () {
+            console.log('Bye');
+        }
+        Person.prototype.lari = function () {
+            console.log(`${this.namaDepan}`);
+        }
+
+        const hafid = new Person('Hafid', 'Al Azhar')
+        console.log(hafid);
+    </script>
+</body>
+
+</html>

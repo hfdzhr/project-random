@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructor Function</title>
+</head>
+
+<body>
+    <script>
+        // ECMAScript 5 
+
+        // Class = Constructor function
+        function Person() { //Awali nama const function dengan huruf besar
+            this.namaDepan = ""
+            this.namaBelakang = ""
+        }
+        const hafid = new Person()
+        hafid.namaDepan = "Hafid" // nama-var.nama prop
+        hafid.namaBelakang = "Al Azhar"
+
+        const rizal = new Person()
+        rizal.namaDepan = "Rizal"
+        rizal.namaBelakang = "Abdullah"
+
+        // console.log(hafid);
+        // console.log(rizal);
+
+
+
+        // Method constuctor function
+        function Nama() {
+            this.namaDepan = ""
+            this.namaBelakang = ""
+            this.bilangHalo = function (nama) { //Method Const Function
+                console.log(`Halo ${nama}, nama saya ${this.namaDepan}`);
+            }
+        }
+        const akbar = new Nama()
+        akbar.namaDepan = "Akbar"
+        akbar.namaBelakang = "Ilham"
+        akbar.bilangHalo('Janur') // Memanggil method (param)
+
+        // console.log(akbar);
+
+
+        // Paramater constructor function
+        function Name(namaDepan, namaBelakang) {
+            this.namaDepan = namaDepan
+            this.namaBelakang = namaBelakang
+            this.panggil = function (nama) {
+                console.log(`Halo ${nama}, saya ${this.namaDepan}`);
+            }
+        }
+        const ujang = new Name("Ujang", "Edi") //Dengan parameter new Name(namaDepan, namaBelakang)
+        ujang.panggil('Eko')
+
+
+        // Constructor Inheritance
+        function Karyawan(namaDepan) {
+            this.namaDepan = namaDepan
+            this.panggil = function (nama) {
+                console.log(`Halo nama saya ${this.namaDepan}, halo ${nama}`);
+            }
+        }
+
+        function Manager(namaDepan, namaBelakang) {
+            this.namaBelakang = namaBelakang
+            Karyawan.call(this, namaDepan)
+        }
+
+        const jamal = new Manager('Jamal', 'Kashogi')
+        console.log(jamal);
+    </script>
+</body>
+
+</html>
