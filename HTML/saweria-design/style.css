@@ -65,7 +65,9 @@
     margin-top: 50px;
     font-family: 'Comfortaa', cursive;
     margin-bottom: 40px;
-    top: 2px;
+    top: 0px;
+    position: relative;
+
 }
 
 .detail5 {
@@ -105,13 +107,15 @@
     font-family: 'Space Mono', monospace;
     font-size: large;
     border-color: black;
+    position: relative;
+    top: 0px;
 
 }
 
 .tombol:active {
     box-shadow: 4px 4px black;
     transition: 80ms;
-
+    top: 2px;
 }
 
 #btn1 {
@@ -125,7 +129,7 @@
 .detail4:hover {
     box-shadow: 6px 6px black;
     transition: 70ms;
-    top: 1px;
+    top: 2px;
 }
 
 .detail4 h2 {
