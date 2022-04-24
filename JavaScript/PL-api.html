@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+
+<body>
+    <header>
+        <div class="row text-center">
+            <div class="col m-3">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/1920px-Premier_League_Logo.svg.png"
+                    alt="" srcset="" width="30%" class="mt-1">
+            </div>
+            <div class="col m-3">
+                <h2 style="margin-left: 30px; font-family: 'Hind Vadodara', sans-serif; font-weight: bold;">Premier
+                    League Table
+                </h2>
+                <h4 style="margin-left: 35px; font-family: 'Hind Vadodara', sans-serif;">Season 2021-2022</h4>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="tampilan" align="center">
+            <table id="klub">
+                <tr>
+                    <th>Pos</th>
+                    <th>Klub</th>
+                    <th>Nama Klub</th>
+                    <th>MP</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>Point</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="matchday text-center mt-3" align="center">
+            <h1>Matchday</h1>
+            <div class="row ">
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example" id="select">
+                    </select>
+                </div>
+                <div class="col"><button class="btn btn-primary">Cari</button></div>
+            </div>
+            <div class="match mt-4 text-center" id="match">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    for (let i = 1; i <= 38; i++) {
+        document.getElementById('select').insertAdjacentHTML('beforeend',
+            `<option value="${i}">- Matchday ${i} -</option>
+        
+        `)
+    }
+
+    fetch('https://api.football-data.org/v2/competitions/PL/standings', {
+        method: 'GET',
+        headers: {
+            'X-Auth-Token': '2aa3c5deb6904414b3c9795ecfef3ce6'
+        }
+    }).then(
+        function (response) {
+            response.json().then(
+                function (standings) {
+                    const table = standings.standings
+                    const data = table[0].table
+                    data.forEach(team => {
+                        document.getElementById('klub').insertAdjacentHTML("beforeend",
+                            `<tr>
+                                <td>${team.position}</td>
+            <td><img src="${team.team.crestUrl}" alt="" srcset="" width="25%"></td>
+            <td>${team.team.name}</td>
+            <td>${team.playedGames}</td>
+            <td>${team.won}</td>
+            <td>${team.draw}</td>
+            <td>${team.lost}</td>
+            <td>${team.points}</td>
+            </tr>
+                        `)
+                    });
+                }
+            )
+        }
+    )
+
+    document.querySelector('.btn').addEventListener('click', () => {
+        const matchday = document.getElementById('select').value
+        fetch(`http://api.football-data.org/v2/competitions/2021/matches?matchday=${matchday}`, {
+            headers: {
+                'X-Auth-Token': '2aa3c5deb6904414b3c9795ecfef3ce6'
+            }
+        }).then(
+            function (response) {
+                response.json().then(
+                    function (data) {
+                        const match = data.matches
+                        document.getElementById('match').innerHTML = " "
+                        console.log(match);
+                        match.forEach(matchs => {
+                            document.getElementById('match').insertAdjacentHTML("beforeend",
+                                `<br>
+                                <p><b>${matchs.awayTeam.name}</b> VS <b>${matchs.homeTeam.name}</b></p>
+                                <p><b>${matchs.score.fullTime.awayTeam}</b> : <b>${matchs.score.fullTime.homeTeam}</b></p>
+                                <br>
+                            `)
+                        });
+                    }
+                )
+            }
+        )
+    })
+</script>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 80%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #dddddd;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    header img {
+        margin: 10px;
+    }
+
+    tr:hover {
+        background-color: #dddddd;
+    }
+
+    .match p {
+        text-align: center;
+    }
+</style>
+
+</html>
