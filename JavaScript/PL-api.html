@@ -52,9 +52,11 @@
                     <select class="form-select" aria-label="Default select example" id="select">
                     </select>
                 </div>
-                <div class="col"><button class="btn btn-primary">Cari</button></div>
             </div>
-            <div class="match mt-4 text-center" id="match">
+            <div class="match mt-4 text-center">
+                <div class="row" id="match">
+
+                </div>
             </div>
         </div>
     </div>
@@ -88,7 +90,7 @@
             <td>${team.won}</td>
             <td>${team.draw}</td>
             <td>${team.lost}</td>
-            <td>${team.points}</td>
+            <td><b>${team.points}</b></td>
             </tr>
                         `)
                     });
@@ -97,7 +99,7 @@
         }
     )
 
-    document.querySelector('.btn').addEventListener('click', () => {
+    document.querySelector("#select").addEventListener('change', () => {
         const matchday = document.getElementById('select').value
         fetch(`http://api.football-data.org/v2/competitions/2021/matches?matchday=${matchday}`, {
             headers: {
@@ -109,13 +111,14 @@
                     function (data) {
                         const match = data.matches
                         document.getElementById('match').innerHTML = " "
-                        console.log(match);
                         match.forEach(matchs => {
+                            console.log(matchs);
                             document.getElementById('match').insertAdjacentHTML("beforeend",
-                                `<br>
+                                `<div class="col-4 mb-4">
+                                <p><b>${matchs.utcDate}</b></p>
                                 <p><b>${matchs.awayTeam.name}</b> VS <b>${matchs.homeTeam.name}</b></p>
                                 <p><b>${matchs.score.fullTime.awayTeam}</b> : <b>${matchs.score.fullTime.homeTeam}</b></p>
-                                <br>
+                            </div>
                             `)
                         });
                     }
@@ -133,30 +136,38 @@
 
     td,
     th {
-        border: 1px solid #dddddd;
+        border: 1px solid black;
         text-align: left;
         padding: 8px;
     }
 
     th {
-        background-color: #dddddd;
+        background-color: #EAECF0;
     }
 
-    tr:nth-child(even) {
-        background-color: #dddddd;
+
+
+    tbody:nth-child(-n+5) {
+        background-color: #BBF3BB;
+    }
+
+    tbody:nth-child(6),
+    tbody:nth-child(7) {
+        background-color: #BBF3FF;
+    }
+
+    tbody:nth-last-child(-n+3) {
+        background-color: #FFBBBB;
     }
 
     header img {
         margin: 10px;
     }
 
-    tr:hover {
-        background-color: #dddddd;
-    }
-
     .match p {
         text-align: center;
     }
 </style>
+
 
 </html>
