@@ -1,0 +1,19 @@
+.navbar {
+    background-color: #343A40;
+}
+
+.navbar-brand {
+    font-weight: bolder;
+}
+
+.nav-link {
+    font-weight: medium;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.list-group-item {
+    color: #212529;
+}

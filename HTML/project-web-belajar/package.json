@@ -1,0 +1,19 @@
+{
+  "name": "project-web-belajar",
+  "version": "1.0.0",
+  "description": "Project Desain Web Belajar",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "project",
+    "web",
+    "learning"
+  ],
+  "author": "Hafid Al Azhar",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.2"
+  }
+}

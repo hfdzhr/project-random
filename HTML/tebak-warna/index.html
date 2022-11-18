@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tebak Warna | Hafid Al Azhar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style type="text/tailwindcss">
+    @layer components {
+      .grid-container {
+        @apply grid grid-cols-2 gap-2 p-2 content-center md:grid-cols-4 md:gap-4 md:p-4;
+      }
+
+      .grid-card {
+        @apply aspect-[4/3] rounded-lg hover:scale-95 transition-all duration-500 cursor-pointer;
+      }
+
+      .title {
+        @apply text-6xl font-bold text-center my-5 bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent
+      }
+    }
+  </style>
+  <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script> <!-- Import AlpineJS -->
+</head>
+
+<body>
+  <div class="container" x-data="game()">
+    <h1 class="title">
+      Game tebak warna
+    </h1>
+
+    <div class="grid-container">
+      <template x-for="card in cards">
+        <div class="grid-card" :class="'bg-' + (card.flipped === true ? card.color : 'gray') + '-500'"
+          @click="flipCard(card)"></div>
+      </template>
+
+    </div>
+  </div>
+  <script>
+    const game = () => {
+      return {
+        cards: [{
+            color: 'red',
+            flipped: false
+          }, {
+            color: 'green',
+            flipped: false
+          }, {
+            color: 'blue',
+            flipped: false
+          }, {
+            color: 'yellow',
+            flipped: false
+          },
+          {
+            color: 'red',
+            flipped: false
+          }, {
+            color: 'green',
+            flipped: false
+          }, {
+            color: 'blue',
+            flipped: false
+          }, {
+            color: 'yellow',
+            flipped: false
+          },
+        ],
+        get flippedCard() {
+          return this.cards.filter((card) => card.flipped)
+        },
+        flipCard(card) {
+          // Buka tutup kartu
+          card.flipped = !card.flipped;
+
+          // Cek ketika sudah ada kartu
+          if (this.flippedCard.lenght === 2) {
+            if (this.flippedCard[0] === this.flippedCard[1].color) {
+              alert('Warnanya Sama')
+            }
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
